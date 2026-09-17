@@ -1,0 +1,56 @@
+﻿a2aproject/A2A                                stars=26k v_release=v1.0.1 last-commit=yesterday license=Apache-2.0
+Agenta-AI/agenta                              stars=4.8k v_release=v0.118.4 last-commit=today license=not identifiable by github
+agentgateway/agentgateway                     stars=4.9k v_release=v1.5.0 last-commit=yesterday license=Apache-2.0
+agno-agi/agno                                 stars=42k v_release=v3.0.10 last-commit=today license=Apache-2.0
+anthropics/anthropic-cookbook                 stars=53k v_release=no releases or repo not found last-commit=yesterday license=MIT
+Arize-ai/openinference                        stars=1.2k v_release=@arizeai/openinference-vercel@3.2.0 last-commit=yesterday license=Apache-2.0
+Arize-ai/phoenix                              stars=ERR v_release=arize-phoenix-v20.13.0 last-commit=today license=not identifiable by github
+BerriAI/litellm                               stars=59k v_release=v1.101.0 last-commit=today license=not identifiable by github
+comet-ml/opik                                 stars=22k v_release=v2.2.67 last-commit=today license=Apache-2.0
+confident-ai/deepeval                         stars=18k v_release=python-v4.2.0 last-commit=yesterday license=Apache-2.0
+crewAIInc/crewAI                              stars=59k v_release=v1.15.22 last-commit=today license=MIT
+dapr/dapr-agents                              stars=744 v_release=v1.0.5 last-commit=today license=Apache-2.0
+e2b-dev/E2B                                   stars=14k v_release=@e2b/cli@2.19.1 last-commit=today license=Apache-2.0
+EleutherAI/lm-evaluation-harness              stars=14k v_release=v0.4.13 last-commit=last monday license=MIT
+envoyproxy/ai-gateway                         stars=2.1k v_release=v1.1.0 last-commit=today license=Apache-2.0
+explodinggradients/ragas                      stars=16k v_release=v0.4.3 last-commit=february license=Apache-2.0
+getzep/zep                                    stars=4.9k v_release=zep-ingest-v0.3.0 last-commit=last friday license=Apache-2.0
+google/adk-java                               stars=1.7k v_release=v1.10.0 last-commit=today license=Apache-2.0
+google/adk-python                             stars=22k v_release=v2.9.1 last-commit=today license=Apache-2.0
+guardrails-ai/guardrails                      stars=7.4k v_release=v0.11.0 last-commit=august license=Apache-2.0
+IBM/mcp-context-forge                         stars=4.5k v_release=v1.0.10 last-commit=today license=Apache-2.0
+inngest/inngest                               stars=5.8k v_release=v1.44.0 last-commit=today license=not identifiable by github
+invariantlabs-ai/invariant                    stars=457 v_release=no releases or repo not found last-commit=january license=Apache-2.0
+kagent-dev/kagent                             stars=3.8k v_release=v0.10.1 last-commit=today license=Apache-2.0
+Kong/kong                                     stars=44k v_release=v3.9.3 last-commit=september license=Apache-2.0
+kubernetes-sigs/agent-sandbox                 stars=4k v_release=v1.0.2 last-commit=yesterday license=Apache-2.0
+langchain-ai/deepagents                       stars=30k v_release=deepagents==0.7.15 last-commit=yesterday license=MIT
+langchain-ai/langchain                        stars=147k v_release=langchain-core==1.6.3 last-commit=yesterday license=MIT
+langchain-ai/langgraph                        stars=42k v_release=sdk==0.4.4 last-commit=last monday license=MIT
+langchain-ai/langmem                          stars=1.7k v_release=no releases or repo not found last-commit=september license=MIT
+langfuse/langfuse                             stars=35k v_release=v4.37.0 last-commit=today license=not identifiable by github
+letta-ai/letta                                stars=25k v_release=v0.16.8 last-commit=september license=Apache-2.0
+mem0ai/mem0                                   stars=65k v_release=pi-agent-v0.3.0 last-commit=today license=Apache-2.0
+meta-llama/PurpleLlama                        stars=4.4k v_release=no releases or repo not found last-commit=august license=not identifiable by github
+microsoft/agent-framework                     stars=14k v_release=dotnet-1.21.0 last-commit=today license=MIT
+microsoft/autogen                             stars=61k v_release=python-v0.7.5 last-commit=april license=CC-BY-4.0
+microsoft/semantic-kernel                     stars=29k v_release=dotnet-1.80.1 last-commit=last friday license=MIT
+mlflow/mlflow                                 stars=28k v_release=v3.16.1 last-commit=today license=Apache-2.0
+modelcontextprotocol/modelcontextprotocol     stars=9.2k v_release=2026-07-28 last-commit=yesterday license=not identifiable by github
+modelcontextprotocol/registry                 stars=7.3k v_release=v1.8.1 last-commit=yesterday license=not identifiable by github
+NVIDIA/NeMo-Guardrails                        stars=7.2k v_release=v0.24.1 last-commit=yesterday license=not identifiable by github
+open-feature/spec                             stars=1.3k v_release=v0.9.0 last-commit=last tuesday license=Apache-2.0
+openai/evals                                  stars=19k v_release=no releases or repo not found last-commit=april license=not identifiable by github
+openai/openai-agents-python                   stars=30k v_release=v0.22.2 last-commit=today license=MIT
+Portkey-AI/gateway                            stars=13k v_release=v1.15.2 last-commit=may license=MIT
+promptfoo/promptfoo                           stars=25k v_release=v0.123.0 last-commit=today license=MIT
+ray-project/ray                               stars=44k v_release=ray-2.58.0 last-commit=today license=Apache-2.0
+restatedev/restate                            stars=4.4k v_release=v1.7.10 last-commit=today license=not identifiable by github
+run-llama/llama_index                         stars=52k v_release=v0.14.24 last-commit=last tuesday license=MIT
+stanfordnlp/dspy                              stars=38k v_release=v3.3.1 last-commit=today license=MIT
+temporalio/temporal                           stars=23k v_release=v1.32.0 last-commit=yesterday license=MIT
+tensorzero/tensorzero                         stars=12k v_release=v2026.6.0 last-commit=june license=Apache-2.0
+traceloop/openllmetry                         stars=7.4k v_release=v0.62.3 last-commit=yesterday license=Apache-2.0
+UKGovernmentBEIS/inspect_ai                   stars=2.8k v_release=no releases or repo not found last-commit=today license=MIT
+vllm-project/semantic-router                  stars=5.9k v_release=v0.3.0 last-commit=today license=Apache-2.0
+vllm-project/vllm                             stars=92k v_release=v0.29.0 last-commit=today license=Apache-2.0

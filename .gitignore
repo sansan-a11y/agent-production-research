@@ -1,0 +1,11 @@
+# 第三方 README / 规范原文抓取结果（可由 research/*.ps1 重新生成，不入库）
+research/pages/
+research/pages3/
+research/otel/
+research/vendor/
+
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+*.zip

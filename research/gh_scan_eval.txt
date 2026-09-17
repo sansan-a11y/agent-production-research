@@ -1,0 +1,78 @@
+﻿=== llm traces to eval dataset ===
+  total=4
+  OriginalByteMe/langfuse-dataset-curator            *0       push=2026-03-23 :: A set of tools to allow an LLM to more easily pull filtered traces from langfuse and create a curated dataset 
+  Anas-Amiar/failure-forensics-tool                  *0       push=2026-08-13 :: Observability layer for multi-step AI pipelines: traces every step, diagnoses root-cause failures, and feeds c
+  Romit-Chakraborty/evaluation-harness               *0       push=2026-08-20 :: A lightweight, extensible framework for evaluating LLM outputs against a golden dataset — built by a QA engine
+  bhanuchaddha/Tilsynsagent                          *0       push=2026-09-04 :: Demo/example AI agent (LangGraph) showing how to build production-grade agent reliability: golden dataset, esc
+
+=== production trace dataset evaluation llm ===
+  total=3
+  api-evangelist/galileo-ai                          *1       push=2026-09-04 :: Galileo — independent third-party profile of a public API surface, by API Evangelist. Galileo (galileo.ai, for
+  api-evangelist/athina                              *0       push=2026-09-16 :: Athina AI — independent third-party profile of a public API surface, by API Evangelist. Athina AI is an LLM mo
+  Trustraai/agent-eval                               *0       push=2026-08-27 :: Trustra Agent Eval Harness Open-core evaluation and tracing harness for AI agents. Run test datasets against a
+
+=== topic:llmops evaluation dataset ===
+  total=37
+  dataelement/bisheng                                *11977   push=2026-09-17 :: BISHENG is an open LLM devops platform for next generation Enterprise AI applications. Powerful and comprehens
+  future-agi/future-agi                              *2027    push=2026-09-17 :: Open-source, end-to-end platform for evaluating, observing, and improving LLM and AI agent applications. Traci
+  langfuse/langfuse-workshop                         *44      push=2026-09-08 :: End-to-end Langfuse workshop using a TypeScript Agent to teach the AI engineering loop: tracing, prompt manage
+  multivon-ai/multivon-eval                          *25      push=2026-09-17 :: Practical LLM evaluation for teams that ship to production. Deterministic + LLM-as-judge evaluators, dataset s
+  vincentkoc/tiny_qa_benchmark_pp                    *18      push=2026-04-30 :: Tiny QA Benchmark++ a micro-benchmark suite (52-item gold + on-demand multilingual synthetic packs), generator
+  HZYAI/RagScore                                     *15      push=2026-05-29 :: ⚡️ The "1-Minute RAG Audit" — Generate QA datasets & evaluate RAG systems in Colab, Jupyter, or CLI. Privacy-f
+  h00w/PromptPulse                                   *4       push=2026-09-14 :: Automated, production-grade CI/CD evaluation pipeline for Hugging Face chatbots using DeepEval and dynamic JSO
+  langwatch/n8n-nodes                                *4       push=2025-09-29 :: Combine the power of n8n and the LangWatch platform to supercharge your workflows. Unlock LangWatch’s Prompt M
+
+=== agent eval dataset from logs ===
+  total=0
+
+=== online evaluation llm ===
+  total=73
+  Purewhiter/mobilegym                               *791     push=2026-08-28 :: [EMNLP 2026] MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research · 浏
+  reacher-z/HarnessBench                             *54      push=2026-07-17 :: Benchmark for comparing agent harnesses on everyday online tasks — fixes the base model, varies the harness. S
+  HiThink-Research/BizFinBench.v2                    *49      push=2026-05-01 :: [ICML 2026] BizFinBench.v2: A Unified Offline–Online Bilingual Benchmark for Expert-Level Financial Capability
+  Entspannter/LLMs-RAG-Neurology                     *13      push=2025-01-02 :: This is the GitHub repository of the manuscript titled "Evaluating Base and Retrieval-Augmented Large Language
+  solomoon313/AgentMemoryBench                       *7       push=2026-08-09 :: The official repo of *Benchmarking Continual Agent Memory for Online Learning, Transfer, and Forgetting*. It i
+  GEMIT-Institute-of-HS-Niederrhein/DataSpark        *2       push=2025-11-12 :: This repository showcases an automation demo for building AI agents with n8n and LangChain. It includes agenti
+  psxom3/The-Price-Is-Right                          *2       push=2025-05-09 :: An Autonomous Agentic AI System for Real-Time Deal Discovery- a modular, multi-agent AI framework that autonom
+  Davidchu11381/llm_align_eval                       *1       push=2025-03-03 :: A framework to align LLMs to online communities and evaluate the alignment. 
+
+=== trace to test case ===
+  total=131
+  zszszszsz/.config                                  *355     push=2023-10-05 :: # # Automatically generated file; DO NOT EDIT. # OpenWrt Configuration # CONFIG_MODULES=y CONFIG_HAVE_DOT_CONF
+  dh-orko/Help-me-get-rid-of-unhumans                *82      push=2023-08-20 :: /* JS */ gapi.loaded_0(function(_){var window=this; var ha,ia,ja,ma,sa,na,ta,ya,Ja;_.ea=function(a){return fun
+  SOYJUN/FTP-implement-based-on-UDP                  *69      push=2020-10-01 :: The aim of this assignment is to have you do UDP socket client / server programming with a focus on two broad 
+  Aryia-Behroziuan/References                        *68      push=2022-09-02 ::  Poole, Mackworth & Goebel 1998, p. 1. Russell & Norvig 2003, p. 55. Definition of AI as the study of intellig
+  mdxedia/Awsome-Cash                                *33      push=2017-04-06 :: Updated January 2016 Note on translation: These Website Terms of Service may have been translated into various
+  VinayakVasisht/the-prodigal-son-inspiration-       *8       push=2022-08-30 :: On Friday, August 23, 1912, four-year-old Bobby Dunbar along with his family were staying at their family cabi
+  GabriellyRossi/Duolingo-Login-Page---Test-Traceability-and-Test-Cases-Study *7       push=2024-08-12 :: Overview This repository contains an ongoing study focused on exploring test traceability and the creation of 
+  arunprasath403/TraceGenAI                          *6       push=2025-12-20 :: Agentic AI for SDLC — From requirements to traceable, validated test cases using multi-agent systems
+
+=== failure mining llm traces ===
+  total=1
+  jayaprakashakm11-web/gap-distill                   *0       push=2026-06-17 :: Compress a 7B teacher's reasoning into a 1.5B student by mining the student's failures, distilling verified te
+
+=== llm observability open source ===
+  total=350
+  langfuse/langfuse                                  *34727   push=2026-09-17 :: 🪢 Open source agent evals & observability: Trace, evaluate, and improve LLM applications with one open platfo
+  mlflow/mlflow                                      *28001   push=2026-09-17 :: The open source AI engineering platform for agents, LLMs, and ML models. MLflow enables teams of all sizes to 
+  openobserve/openobserve                            *22075   push=2026-09-17 :: Open source observability platform for logs, metrics, traces, RUM, Session replay, pipelines, SLO and LLM obse
+  tensorzero/tensorzero                              *11720   push=2026-06-11 :: TensorZero is an open-source LLMOps platform that unifies an LLM gateway, observability, evaluation, optimizat
+  VoltAgent/voltagent                                *10636   push=2026-08-27 :: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework
+  evidentlyai/evidently                              *7923    push=2026-09-11 :: Evidently is ​​an open-source ML and LLM observability framework. Evaluate, test, and monitor any AI-powered s
+  traceloop/openllmetry                              *7438    push=2026-09-16 :: Open-source observability for your GenAI or LLM application, based on OpenTelemetry
+  apache/hertzbeat                                   *7397    push=2026-09-17 :: An AI-powered next-generation open source real-time observability system.
+
+=== agent regression testing traces ===
+  total=52
+  Jwuthri/Tracely-ai                                 *1406    push=2026-09-16 :: Trace-native CI/CD for AI agents — production failures become regression tests that block the PR. Auto-detect,
+  WasayAbid/agent-trace-triage                       *2       push=2026-07-06 :: Claude Code plugin: triage failed AI agent traces (loops, tool failures, regression tests)
+  auraoneai/agent-studio-open                        *2       push=2026-07-14 :: Connect agent systems, inspect tool traces, replay failures, compare candidates, and export regression evidenc
+  jashshah999/agenteval                              *1       push=2026-05-04 :: Testing framework for AI agents. Record traces, assert behavior, catch regressions.
+  Ivan53040/Agent-Evaluation-and-Reliability-Lab     *1       push=2026-07-22 :: Evaluation and regression testing for tool-using AI agents across task completion, tool traces, safety, latenc
+  felmonon/trace2test                                *1       push=2026-07-16 :: Turns failed AI agent traces into reproducible regression tests and verified fixes.
+  EZfan/tracetape                                    *1       push=2026-08-13 :: Record agent traces once. Replay offline. Diff behavior. Diagnose failures. Local-first execution & regression
+  hoomanesteki/tracegym-ai-agent-evaluation          *1       push=2026-07-26 :: Record, replay, evaluate, and regression-test AI agents with deterministic traces, calibrated LLM-as-a-judge e
+
+=== synthetic data from production traffic llm ===
+  total=0
+
