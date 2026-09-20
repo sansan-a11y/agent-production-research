@@ -1,0 +1,77 @@
+﻿# repo metadata snapshot (search API)  generated 2026-09-21 07:03
+
+== batch 1 : requested 8, returned 8 ==
+langchain-ai/langchain                       stars=146748  pushed=2026-09-20 lic=MIT            :: The agent engineering platform.
+langchain-ai/langgraph                       stars=42027   pushed=2026-09-20 lic=MIT            :: Build resilient agents.
+langchain-ai/deepagents                      stars=29602   pushed=2026-09-20 lic=MIT            :: The batteries-included agent harness.
+openai/openai-agents-python                  stars=29586   pushed=2026-09-20 lic=MIT            :: A lightweight, powerful framework for multi-agent workflows
+google/adk-python                            stars=21581   pushed=2026-09-20 lic=Apache-2.0     :: An open-source, code-first Python toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control.
+microsoft/agent-framework                    stars=13623   pushed=2026-09-18 lic=MIT            :: A framework for building, orchestrating and deploying AI agents and multi-agent workflows with support for Python and .NET.
+openai/openai-agents-js                      stars=3836    pushed=2026-09-20 lic=MIT            :: A lightweight, powerful framework for multi-agent workflows and voice agents
+google/adk-java                              stars=1732    pushed=2026-09-19 lic=Apache-2.0     :: An open-source, code-first Java toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control.
+
+== batch 2 : requested 8, returned 7 ==
+crewAIInc/crewAI                             stars=58826   pushed=2026-09-20 lic=MIT            :: Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seaml
+run-llama/llama_index                        stars=52249   pushed=2026-09-19 lic=MIT            :: LlamaIndex is the document processing platform for AI
+agno-agi/agno                                stars=42271   pushed=2026-09-20 lic=Apache-2.0     :: Build, run, and manage agent platforms.
+microsoft/semantic-kernel                    stars=28581   pushed=2026-09-19 lic=MIT            :: Integrate cutting-edge LLM technology quickly and easily into your apps
+mastra-ai/mastra                             stars=28209   pushed=2026-09-20 lic=NOASSERTION    :: Mastra is the modern TypeScript framework for AI-powered applications and agents.
+pydantic/pydantic-ai                         stars=20074   pushed=2026-09-19 lic=MIT            :: How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end.
+livekit/agents                               stars=14289   pushed=2026-09-20 lic=Apache-2.0     :: A framework for building realtime voice AI agents 🤖🎙️📹 
+
+== batch 3 : requested 8, returned 6 ==
+pipecat-ai/pipecat                           stars=15697   pushed=2026-09-20 lic=BSD-2-Clause   :: Open Source framework for voice agents, multimodal apps, and realtime AI. Maintained by Daily and the community.
+guardrails-ai/guardrails                     stars=7436    pushed=2026-09-18 lic=Apache-2.0     :: Adding guardrails to large language models.
+meta-llama/PurpleLlama                       stars=4401    pushed=2026-08-18 lic=NOASSERTION    :: Set of tools to assess and improve LLM security.
+protectai/llm-guard                          stars=3209    pushed=2026-07-08 lic=MIT            :: The Security Toolkit for LLM Interactions
+QwenLM/Qwen3Guard                            stars=511     pushed=2025-10-21 lic=none           :: Qwen3Guard is a multilingual guardrail model series developed by the Qwen team at Alibaba Cloud.
+ibm-granite/granite-guardian                 stars=178     pushed=2026-08-26 lic=Apache-2.0     :: The Granite Guardian models are designed to detect risks in prompts and responses.
+
+== batch 4 : requested 8, returned 7 ==
+open-policy-agent/opa                        stars=12256   pushed=2026-09-19 lic=Apache-2.0     :: Open Policy Agent (OPA) is an open source, general-purpose policy engine.
+NVIDIA/garak                                 stars=9317    pushed=2026-09-16 lic=Apache-2.0     :: the LLM vulnerability scanner
+openfga/openfga                              stars=5802    pushed=2026-09-20 lic=Apache-2.0     :: A high performance and flexible authorization/permission engine built for developers and inspired by Google Zanzibar
+cerbos/cerbos                                stars=4592    pushed=2026-09-18 lic=Apache-2.0     :: Cerbos is an open-core authorization management platform for authorizing every identity and governing every action across applications, gateways, work
+stacklok/toolhive                            stars=2197    pushed=2026-09-19 lic=Apache-2.0     :: ToolHive is an enterprise-grade platform for running and managing Model Context Protocol (MCP) servers.
+cedar-policy/cedar                           stars=1738    pushed=2026-09-18 lic=Apache-2.0     :: Implementation of the Cedar Policy Language
+Azure/PyRIT                                  stars=116     pushed=2026-03-25 lic=MIT            :: The Python Risk Identification Tool for generative AI (PyRIT) is an open source framework built to empower security professionals and engineers to pro
+
+== batch 5 : requested 8, returned 5 ==
+BerriAI/litellm                              stars=59241   pushed=2026-09-20 lic=NOASSERTION    :: The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balanc
+langfuse/langfuse                            stars=34855   pushed=2026-09-20 lic=NOASSERTION    :: 🪢 Open source agent evals & observability: Trace, evaluate, and improve LLM applications with one open platform.
+agentgateway/agentgateway                    stars=4944    pushed=2026-09-20 lic=Apache-2.0     :: Next Generation Agentic Proxy for AI Agents and MCP servers
+IBM/mcp-context-forge                        stars=4504    pushed=2026-09-19 lic=Apache-2.0     :: An AI Gateway, registry, and proxy that sits in front of any MCP, A2A, or REST/gRPC APIs, exposing a unified endpoint with centralized discovery, guar
+obot-platform/obot                           stars=1031    pushed=2026-09-18 lic=MIT            :: Complete AI Governance Platform from Obot AI
+
+== batch 6 : requested 8, returned 7 ==
+comet-ml/opik                                stars=22165   pushed=2026-09-20 lic=Apache-2.0     :: Debug, evaluate, and monitor your LLM applications, RAG systems, and agentic workflows with comprehensive tracing, automated evaluations, and producti
+Arize-ai/phoenix                             stars=11554   pushed=2026-09-20 lic=NOASSERTION    :: AI Observability & Evaluation
+evidentlyai/evidently                        stars=7932    pushed=2026-09-11 lic=Apache-2.0     :: Evidently is ​​an open-source ML and LLM observability framework. Evaluate, test, and monitor any AI-powered system or data pipeline. From tabular dat
+truera/trulens                               stars=3566    pushed=2026-09-20 lic=MIT            :: Evaluation and Tracking for LLM Experiments and AI Agents
+lmnr-ai/lmnr                                 stars=3271    pushed=2026-09-20 lic=Apache-2.0     :: Laminar - open-source observability platform purpose-built for AI agents. YC S24.
+wandb/weave                                  stars=1129    pushed=2026-09-18 lic=Apache-2.0     :: Weave is a toolkit for developing AI-powered applications, built by Weights & Biases.
+langchain-ai/langsmith-sdk                   stars=1060    pushed=2026-09-19 lic=MIT            :: LangSmith Client SDK Implementations
+
+== batch 7 : requested 8, returned 7 ==
+promptfoo/promptfoo                          stars=25313   pushed=2026-09-20 lic=MIT            :: Test your prompts, agents, and RAGs. Red teaming/pentesting/vulnerability scanning for AI. Compare performance of GPT, Claude, Gemini, DeepSeek, and m
+confident-ai/deepeval                        stars=18356   pushed=2026-09-20 lic=Apache-2.0     :: The LLM Evaluation Framework
+Giskard-AI/giskard-oss                       stars=5831    pushed=2026-09-18 lic=Apache-2.0     :: 🐢 Open-Source Evaluation & Testing library for LLM Agents
+UKGovernmentBEIS/inspect_ai                  stars=2817    pushed=2026-09-19 lic=MIT            :: Inspect: A framework for large language model evaluations
+ethz-spylab/agentdojo                        stars=846     pushed=2026-06-02 lic=MIT            :: A Dynamic Environment to Evaluate Attacks and Defenses for LLM Agents.
+ryoungj/ToolEmu                              stars=223     pushed=2024-03-22 lic=Apache-2.0     :: [ICLR'24 Spotlight] A language model (LM)-based emulation framework for identifying the risks of LM agents with tool use
+thu-coai/Agent-SafetyBench                   stars=160     pushed=2025-08-11 lic=MIT            :: 
+
+== batch 8 : requested 8, returned 7 ==
+temporalio/temporal                          stars=23195   pushed=2026-09-20 lic=MIT            :: Temporal service
+e2b-dev/E2B                                  stars=13892   pushed=2026-09-19 lic=Apache-2.0     :: Open-source, secure environment with real-world tools for enterprise-grade agents.
+restatedev/restate                           stars=4449    pushed=2026-09-18 lic=NOASSERTION    :: Restate is the platform for building resilient applications that tolerate all infrastructure faults w/o the need for a PhD.
+kubernetes-sigs/agent-sandbox                stars=3962    pushed=2026-09-19 lic=Apache-2.0     :: agent-sandbox enables easy management of isolated, stateful, singleton workloads, ideal for use cases like AI agent runtimes and reinforcement learnin
+THUDM/AgentBench                             stars=3742    pushed=2026-02-08 lic=Apache-2.0     :: A Comprehensive Benchmark to Evaluate LLMs as Agents (ICLR'24)
+web-arena-x/webarena                         stars=1610    pushed=2025-11-26 lic=Apache-2.0     :: Code repo for "WebArena: A Realistic Web Environment for Building Autonomous Agents"
+abshkbh/arrakis                              stars=878     pushed=2025-06-02 lic=AGPL-3.0       :: A fully customizable and self-hosted sandboxing solution for AI agent code execution and computer use. It features out-of-the-box support for backtrac
+
+== batch 9 : requested 4, returned 4 ==
+hatchet-dev/hatchet                          stars=7976    pushed=2026-09-20 lic=MIT            :: 🪓 An orchestration engine for background tasks, AI agents, and durable workflows
+inngest/inngest                              stars=5855    pushed=2026-09-20 lic=NOASSERTION    :: The leading workflow orchestration platform. Run stateful step functions and AI workflows on serverless, servers, or the edge.
+dbos-inc/dbos-transact-py                    stars=1579    pushed=2026-09-19 lic=MIT            :: Database-Backed Durable Python Workflows
+dapr/dapr-agents                             stars=748     pushed=2026-09-18 lic=Apache-2.0     :: Build autonomous, resilient and observable AI agents with built-in workflow orchestration, security, statefulness and telemetry.

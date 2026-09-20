@@ -1,0 +1,64 @@
+﻿langchain-ai/langchain                         stars=147k     release=langchain-core==1.6.3
+langchain-ai/langgraph                         stars=42k      release=sdk==0.4.4
+langchain-ai/deepagents                        stars=30k      release=deepagents==0.7.15
+openai/openai-agents-python                    stars=30k      release=v0.22.3
+google/adk-python                              stars=22k      release=v2.9.2
+microsoft/agent-framework                      stars=14k      release=dotnet-1.22.0
+microsoft/semantic-kernel                      stars=29k      release=dotnet-1.80.1
+strands-agents/sdk-python                      stars=7.4k     release=typescript/v1.18.0
+crewAIInc/crewAI                               stars=59k      release=v1.15.22
+agno-agi/agno                                  stars=42k      release=v3.0.10
+pydantic/pydantic-ai                           stars=20k      release=v2.46.0
+mastra-ai/mastra                               stars=28k      release=@mastra/core@1.67.0
+NVIDIA/NeMo-Guardrails                         stars=7.2k     release=v0.24.1
+guardrails-ai/guardrails                       stars=7.4k     release=v0.11.0
+meta-llama/PurpleLlama                         stars=4.4k     release=no releases or repo not found
+protectai/llm-guard                            stars=3.2k     release=no releases or repo not found
+vijil/vijil                                    stars=repo not found release=no releases or repo not found
+QwenLM/Qwen3Guard                              stars=511      release=no releases or repo not found
+ibm-granite/granite-guardian                   stars=178      release=no releases or repo not found
+NVIDIA/garak                                   stars=9.3k     release=v0.17.0
+Azure/PyRIT                                    stars=116      release=no releases or repo not found
+open-policy-agent/opa                          stars=12k      release=v1.20.2
+cedar-policy/cedar                             stars=1.7k     release=cedar-policy-cli-v4.13.0
+openfga/openfga                                stars=5.8k     release=v1.21.0
+cerbos/cerbos                                  stars=4.6k     release=v0.55.0
+permitio/permit                                stars=repo not found release=no releases or repo not found
+stacklok/toolhive                              stars=2.2k     release=v0.50.0
+obot-platform/obot                             stars=1k       release=v0.26.0
+IBM/mcp-context-forge                          stars=4.5k     release=v1.0.10
+snyk/mcp-scan                                  stars=3.1k     release=v0.6.3
+agentgateway/agentgateway                      stars=4.9k     release=v1.5.0
+langfuse/langfuse                              stars=35k      release=v4.38.0
+langchain-ai/langsmith-sdk                     stars=1.1k     release=v0.13.0
+Arize-ai/phoenix                               stars=12k      release=arize-phoenix-v20.14.0
+comet-ml/opik                                  stars=22k      release=v2.2.71
+wandb/weave                                    stars=1.1k     release=v0.53.7
+braintrustdata/braintrust-sdk                  stars=27       release=braintrust@3.34.0
+lmnr-ai/lmnr                                   stars=3.3k     release=v0.2.5
+truera/trulens                                 stars=3.6k     release=trulens-2.14.0
+evidentlyai/evidently                          stars=7.9k     release=v0.7.23
+Giskard-AI/giskard-oss                         stars=5.8k     release=giskard-checks/v1.0.4
+galileo-ai/galileo-python                      stars=repo not found release=no releases or repo not found
+promptfoo/promptfoo                            stars=25k      release=v0.123.1
+confident-ai/deepeval                          stars=18k      release=python-v4.2.0
+UKGovernmentBEIS/inspect_ai                    stars=2.8k     release=no releases or repo not found
+vectara/hallucination-leaderboard              stars=3.3k     release=no releases or repo not found
+potsawee/selfcheckgpt                          stars=631      release=v0.1.7
+lianhua-zhao/MiniCheck                         stars=repo not found release=no releases or repo not found
+amazon-science/refchecker                      stars=434      release=v0.2.17
+sierra-research/tau2-bench                     stars=2.1k     release=v1.0.1
+princeton-pli/hal-harness                      stars=311      release=no releases or repo not found
+metauto-ai/agent-as-a-judge                    stars=827      release=no releases or repo not found
+thu-coai/Agent-SafetyBench                     stars=160      release=no releases or repo not found
+ryoungj/ToolEmu                                stars=223      release=no releases or repo not found
+ethz-spylab/agentdojo                          stars=846      release=v0.1.35
+kubernetes-sigs/agent-sandbox                  stars=4k       release=v1.0.3
+e2b-dev/E2B                                    stars=14k      release=e2b@2.51.0
+abshkbh/arrakis                                stars=878      release=release-36
+temporalio/temporal                            stars=23k      release=v1.32.0
+restatedev/restate                             stars=4.4k     release=v1.7.10
+dapr/dapr-agents                               stars=748      release=v1.0.5
+inngest/inngest                                stars=5.9k     release=v1.45.1
+hatchet-dev/hatchet                            stars=8k       release=v0.107.0
+dbos-inc/dbos-transact-py                      stars=1.6k     release=v3.0.0
