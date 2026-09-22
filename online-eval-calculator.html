@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 结果在线评价：阈值与审计样本量计算器</title>
+<style>
+  :root {
+    --ink: #12181f; --muted: #5b6b7c; --line: #d7dee6; --bg: #f6f8fa; --card: #ffffff;
+    --red: #c0392b; --amber: #b7791f; --green: #1e7a4d; --blue: #1f6feb;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: var(--bg); color: var(--ink);
+         font: 14px/1.6 "Segoe UI", "Microsoft YaHei", system-ui, sans-serif; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 16px; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+  h3 { font-size: 14px; margin: 18px 0 8px; color: var(--muted); }
+  .sub { color: var(--muted); margin-bottom: 16px; font-size: 13px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  input[type=number] { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; font: inherit; }
+  input[type=range] { width: 100%; }
+  .val { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .out { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .kpi { background: #fbfcfd; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+  .kpi .n { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .kpi .l { font-size: 12px; color: var(--muted); }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { border: 1px solid var(--line); padding: 6px 9px; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { background: #eef2f6; font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); }
+  .warn { border-left: 3px solid var(--red); background: #fdf3f2; padding: 10px 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; }
+  .good { border-left: 3px solid var(--green); background: #f1f8f4; padding: 10px 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; }
+  .hint { border-left: 3px solid var(--blue); background: #f2f6fd; padding: 10px 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; }
+  code { background: #eef2f6; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  textarea { width: 100%; min-height: 74px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; font: 12px/1.6 Consolas, monospace; }
+  footer { color: var(--muted); font-size: 12px; margin-top: 26px; }
+</style>
+</head>
+<body>
+<h1>Agent 结果在线评价：阈值与审计样本量计算器</h1>
+<div class="sub">
+  配套文档：<code>agent-online-eval-hitl-research.md</code>（§5 三区间与双保险、§7 审计算术、§10 成本模型）。
+  本页模型为<strong>规划用估算</strong>，不是实测数据；请用你自己的校准集与成本口径替换默认值。
+</div>
+
+<h2>1. 输入（流量与成本口径）</h2>
+<div class="card">
+  <div class="grid">
+    <div><label>日流量 N（条）</label><input type="number" id="dailyVolume" value="20000" min="1"></div>
+    <div><label>红区占比（不放行）%</label><input type="number" id="redRate" value="1" min="0" max="100" step="0.1"></div>
+    <div><label>黄区占比（必审）%</label><input type="number" id="amberRate" value="7" min="0" max="100" step="0.1"></div>
+    <div><label>绿区随机审计抽样率 ε %</label><input type="number" id="greenAuditRate" value="2" min="0" max="100" step="0.1"></div>
+    <div><label>单件人工耗时（分钟）</label><input type="number" id="reviewMinutes" value="3" min="0.1" step="0.1"></div>
+    <div><label>人力成本（元/分钟）</label><input type="number" id="reviewCostPerMinute" value="1.5" min="0" step="0.1"></div>
+    <div><label>judge 单次成本（元/条）</label><input type="number" id="judgeCost" value="0.02" min="0" step="0.01"></div>
+    <div><label>judge 覆盖比例 %</label><input type="number" id="judgeCoverage" value="100" min="0" max="100" step="1"></div>
+    <div><label>单次误放行损失 C_miss（元）</label><input type="number" id="missCost" value="200" min="0" step="10"></div>
+    <div><label>声称的残余错误率上界 α %</label><input type="number" id="alpha" value="1" min="0.001" max="50" step="0.01"></div>
+    <div><label>置信度 %</label><input type="number" id="confidence" value="95" min="50" max="99.99" step="0.5"></div>
+    <div><label>审计执行频率（每 N 天一次）</label><input type="number" id="auditPeriodDays" value="90" min="1" step="1"></div>
+  </div>
+  <div class="note" style="margin-top:10px">
+    口径说明：黄区占比与绿区占比按<strong>全部流量</strong>计；绿区占比 = 100% − 红区 − 黄区。
+    人工复核量 = N ×（黄区 + 绿区 × ε）。α 是对<strong>绿区（自动放行）</strong>残余错误率的承诺上限。
+  </div>
+</div>
+
+<h2>2. 输出（人工负载与成本）</h2>
+<div class="card">
+  <div class="out" id="kpis"></div>
+  <div id="capacityAlert"></div>
+  <h3>成本分解</h3>
+  <table>
+    <thead><tr><th>成本项</th><th>每日（元）</th><th>每季度 90 天（元）</th><th>占比</th></tr></thead>
+    <tbody id="costRows"></tbody>
+  </table>
+  <div class="note" style="margin-top:8px">
+    期望错误成本按"绿区未抽查部分 × α"保守估计（α 是承诺上限，实际可能更低）。
+  </div>
+</div>
+
+<h2>3. 审计样本量：要证明 α，需要抽多少件</h2>
+<div class="card">
+  <h3>零错误样本量（rule of three 与精确二项）</h3>
+  <table>
+    <thead><tr><th>声称上界 α</th><th>精确二项所需样本</th><th>rule of three 近似</th><th>以 95% 概率检出该错误率所需样本</th></tr></thead>
+    <tbody id="auditRows"></tbody>
+  </table>
+  <div id="auditGap"></div>
+</div>
+
+<h2>4. 观测结果 → 置信上界（精确单侧）与结论句式</h2>
+<div class="card">
+  <div class="grid">
+    <div><label>审计样本量 n</label><input type="number" id="obsN" value="300" min="1" step="1"></div>
+    <div><label>观测到的错误数 k</label><input type="number" id="obsK" value="0" min="0" step="1"></div>
+  </div>
+  <div class="out" id="wilsonKpis" style="margin-top:12px"></div>
+  <h3>可直接使用的结论句式</h3>
+  <textarea id="sentence" readonly></textarea>
+</div>
+
+<h2>5. 转交率该定多少：期望损失最小化</h2>
+<div class="card">
+  <div class="note">
+    示意模型：残余错误率随人工转交率 ρ 衰减 <code>R(ρ) = R0 × exp(−k × ρ)</code>。
+    <strong>R0 与 k 必须用你自己的校准数据拟合</strong>（例如用若干组历史阈值 → 转交率 → 实测错误率做回归），下面的默认值仅用于演示曲线形状。
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <div><label>R0：完全不转人工时的错误率 %</label><input type="number" id="riskZero" value="12" min="0" step="0.5"></div>
+    <div><label>k：转人工的边际灵敏度</label><input type="number" id="riskSensitivity" value="25" min="0.1" step="1"></div>
+    <div><label>每条人工复核成本（元）</label><input type="number" id="reviewCostPerItem" value="4.5" min="0" step="0.1" readonly></div>
+  </div>
+  <div class="out" id="optKpis" style="margin-top:12px"></div>
+  <canvas id="curve" width="900" height="300" style="width:100%;height:auto;margin-top:12px;border:1px solid var(--line);border-radius:8px;background:#fff"></canvas>
+  <div class="note" style="margin-top:6px">蓝线 = 单位成本（元/条）；红虚线 = 残余错误率 R(ρ)；圆点 = 期望损失最小的转交率 ρ*。</div>
+</div>
+
+<h2>6. 模型假设与边界</h2>
+<div class="card">
+  <ul class="note" style="margin:0;padding-left:18px">
+    <li>审计样本量与上界基于<strong>二项抽样</strong>假设：审计样本是从绿区中随机抽取的（含随机审计通道），若只审低分样本则该估计不成立。</li>
+    <li>α 是"绿区残余错误率"的承诺上限，不代表全部流量；红区不放行、黄区经人工，不计入该指标。</li>
+    <li>人工容量未建模疲劳效应（队列越长、单件准确率越低），请另行按 §6.4 的容量红线做人工侧监控。</li>
+    <li>分布漂移会使上述保证过期，需定期重校准并自动收紧阈值（§7.3）。</li>
+  </ul>
+</div>
+
+<footer>配套：agent-online-eval-hitl-research.md ｜ 单文件离线可用，无外部依赖</footer>
+<script>
+// ==== MATH-CORE-START ====
+// 该区块不依赖 DOM，可被独立抽出做单元验证。
+
+// 标准正态分布分位数（Acklam 有理逼近，精度约 1e-9）
+function normalQuantile(probability) {
+  const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02,
+             1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+  const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02,
+             6.680131188771972e+01, -1.328068155288572e+01];
+  const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00,
+             -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+  const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+  const lowTail = 0.02425;
+  let quantile;
+  if (probability < lowTail) {
+    const q = Math.sqrt(-2 * Math.log(probability));
+    quantile = (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
+               ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  } else if (probability <= 1 - lowTail) {
+    const q = probability - 0.5;
+    const r = q * q;
+    quantile = (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+               (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+  } else {
+    const q = Math.sqrt(-2 * Math.log(1 - probability));
+    quantile = -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
+                ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+  return quantile;
+}
+
+// 零错误审计样本量：n 件样本全部正确时，错误率的单侧置信上界约等于 1 - (1-conf)^(1/n)
+// 反解：n = ceil( ln(1-conf) / ln(1-targetRate) )
+function auditSampleSizeZeroError(targetRate, confidence) {
+  if (!(targetRate > 0) || !(targetRate < 1)) return Infinity;
+  return Math.ceil(Math.log(1 - confidence) / Math.log(1 - targetRate));
+}
+
+// 以 confidence 概率至少检出一次真实错误率 trueRate 所需的样本量
+function detectionSampleSize(trueRate, confidence) {
+  if (!(trueRate > 0) || !(trueRate < 1)) return Infinity;
+  return Math.ceil(Math.log(1 - confidence) / Math.log(1 - trueRate));
+}
+
+// Wilson 置信区间（无连续性校正）
+function wilsonInterval(errors, samples, confidence) {
+  if (!(samples > 0)) return { point: 0, low: 0, high: 1 };
+  const z = normalQuantile(1 - (1 - confidence) / 2);
+  const observed = errors / samples;
+  const denominator = 1 + (z * z) / samples;
+  const center = (observed + (z * z) / (2 * samples)) / denominator;
+  const halfWidth = (z * Math.sqrt((observed * (1 - observed)) / samples + (z * z) / (4 * samples * samples))) / denominator;
+  return { point: observed, low: Math.max(0, center - halfWidth), high: Math.min(1, center + halfWidth) };
+}
+
+// 负载与成本：输入均为小数比例（0–1）
+function computeScenario(input) {
+  const greenRate = Math.max(0, 1 - input.redRate - input.amberRate);
+  const reviewedPerDay = input.dailyVolume * (input.amberRate + greenRate * input.greenAuditRate);
+  const manHoursPerDay = (reviewedPerDay * input.reviewMinutes) / 60;
+  const manDaysPerDay = manHoursPerDay / 8;
+  const judgeCostPerDay = input.dailyVolume * input.judgeCoverage * input.judgeCost;
+  const reviewCostPerDay = reviewedPerDay * input.reviewMinutes * input.reviewCostPerMinute;
+  const auditSample = auditSampleSizeZeroError(input.alpha, input.confidence);
+  const auditCostPerDay = (auditSample * input.reviewMinutes * input.reviewCostPerMinute) / input.auditPeriodDays;
+  const unauditedGreenPerDay = input.dailyVolume * greenRate * (1 - input.greenAuditRate);
+  const missedErrorsPerDay = unauditedGreenPerDay * input.alpha;
+  const missCostPerDay = missedErrorsPerDay * input.missCost;
+  const totalPerDay = judgeCostPerDay + reviewCostPerDay + auditCostPerDay + missCostPerDay;
+  const collectedPerAuditPeriod = input.dailyVolume * greenRate * input.greenAuditRate * input.auditPeriodDays;
+  const requiredGreenAuditRate = (greenRate > 0 && input.dailyVolume > 0)
+    ? auditSample / (input.dailyVolume * greenRate * input.auditPeriodDays)
+    : Infinity;
+  return {
+    greenRate, reviewedPerDay, manHoursPerDay, manDaysPerDay,
+    judgeCostPerDay, reviewCostPerDay, auditCostPerDay, missCostPerDay, totalPerDay,
+    auditSample, collectedPerAuditPeriod, requiredGreenAuditRate,
+    missedErrorsPerDay, unauditedGreenPerDay
+  };
+}
+
+// 期望损失最小化的转交率：单位成本(ρ) = (1-ρ)·R(ρ)·C_miss + ρ·C_rev，R(ρ)=R0·exp(-k·ρ)
+function unitCostAt(deferralRate, riskZero, sensitivity, missCost, reviewCostPerItem) {
+  const residualRisk = riskZero * Math.exp(-sensitivity * deferralRate);
+  return (1 - deferralRate) * residualRisk * missCost + deferralRate * reviewCostPerItem;
+}
+
+function optimalDeferralRate(riskZero, sensitivity, missCost, reviewCostPerItem) {
+  let best = { rate: 0, cost: unitCostAt(0, riskZero, sensitivity, missCost, reviewCostPerItem) };
+  for (let rate = 0.001; rate <= 0.999; rate += 0.001) {
+    const cost = unitCostAt(rate, riskZero, sensitivity, missCost, reviewCostPerItem);
+    if (cost < best.cost) best = { rate, cost };
+  }
+  return {
+    rate: best.rate,
+    unitCost: best.cost,
+    residualRisk: riskZero * Math.exp(-sensitivity * best.rate),
+    costAtZero: unitCostAt(0, riskZero, sensitivity, missCost, reviewCostPerItem),
+    costAtFull: unitCostAt(0.999, riskZero, sensitivity, missCost, reviewCostPerItem)
+  };
+}
+// ---- 精确单侧置信上界（Clopper–Pearson）----
+// 数值工具：Lanczos 对数 Gamma
+function logGamma(x) {
+  const coefficients = [76.18009172947146, -86.50532032941677, 24.01409824083091,
+                        -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+  let series = 1.000000000190015;
+  let y = x;
+  for (let index = 0; index < 6; index++) {
+    y += 1;
+    series += coefficients[index] / y;
+  }
+  const tmp = x + 5.5;
+  return (x + 0.5) * Math.log(tmp) - tmp + Math.log(2.5066282746310005 * series / x);
+}
+
+// 正则化不完全 Beta 函数 I_x(a,b)（连分数 + Lentz 算法）
+// 连分数（Numerical Recipes / Cephes 标准实现）
+function betaContinuedFraction(a, b, x) {
+  const tiny = 1e-300;
+  const epsilon = 3e-16;
+  const qab = a + b;
+  const qap = a + 1;
+  const qam = a - 1;
+  let c = 1;
+  let d = 1 - (qab * x) / qap;
+  if (Math.abs(d) < tiny) d = tiny;
+  d = 1 / d;
+  let h = d;
+  for (let m = 1; m <= 400; m++) {
+    const m2 = 2 * m;
+    let numerator = (m * (b - m) * x) / ((qam + m2) * (a + m2));
+    d = 1 + numerator * d;
+    if (Math.abs(d) < tiny) d = tiny;
+    c = 1 + numerator / c;
+    if (Math.abs(c) < tiny) c = tiny;
+    d = 1 / d;
+    h *= d * c;
+    numerator = (-(a + m) * (qab + m) * x) / ((a + m2) * (qap + m2));
+    d = 1 + numerator * d;
+    if (Math.abs(d) < tiny) d = tiny;
+    c = 1 + numerator / c;
+    if (Math.abs(c) < tiny) c = tiny;
+    d = 1 / d;
+    const delta = d * c;
+    h *= delta;
+    if (Math.abs(delta - 1) < epsilon) break;
+  }
+  return h;
+}
+
+// 正则化不完全 Beta 函数 I_x(a, b)
+function regularizedIncompleteBeta(a, b, x) {
+  if (x <= 0) return 0;
+  if (x >= 1) return 1;
+  const front = Math.exp(logGamma(a + b) - logGamma(a) - logGamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+  if (x < (a + 1) / (a + b + 2)) return (front * betaContinuedFraction(a, b, x)) / a;
+  return 1 - (front * betaContinuedFraction(b, a, 1 - x)) / b;
+}
+// Clopper–Pearson 单侧上界：满足 P(X <= k | p = upper) = 1 - confidence
+function clopperPearsonUpperBound(errors, samples, confidence) {
+  if (!(samples > 0)) return 1;
+  const k = Math.min(Math.max(0, errors), samples);
+  if (k === samples) return 1;
+  if (k === 0) return -Math.expm1(Math.log(1 - confidence) / samples);
+  let low = k / samples;
+  let high = 1;
+  for (let i = 0; i < 200; i++) {
+    const middle = (low + high) / 2;
+    if (regularizedIncompleteBeta(k + 1, samples - k, middle) < confidence) low = middle;
+    else high = middle;
+  }
+  return (low + high) / 2;
+}
+
+// Wilson 单侧上界（闭式，参考用）
+function wilsonUpperBound(errors, samples, confidence) {
+  if (!(samples > 0)) return 1;
+  const z = normalQuantile(confidence);
+  const observed = errors / samples;
+  const denominator = 1 + (z * z) / samples;
+  const center = (observed + (z * z) / (2 * samples)) / denominator;
+  const halfWidth = (z * Math.sqrt((observed * (1 - observed)) / samples + (z * z) / (4 * samples * samples))) / denominator;
+  return Math.min(1, center + halfWidth);
+}
+// ==== MATH-CORE-END ====
+// ==== UI 绑定与渲染 ====
+const numberFormat = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 2 });
+const intFormat = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 0 });
+
+function readInputs() {
+  const value = (id, fallback) => {
+    const raw = parseFloat(document.getElementById(id).value);
+    return Number.isFinite(raw) ? raw : fallback;
+  };
+  return {
+    dailyVolume: Math.max(1, value("dailyVolume", 20000)),
+    redRate: Math.min(1, Math.max(0, value("redRate", 1) / 100)),
+    amberRate: Math.min(1, Math.max(0, value("amberRate", 7) / 100)),
+    greenAuditRate: Math.min(1, Math.max(0, value("greenAuditRate", 2) / 100)),
+    reviewMinutes: Math.max(0.1, value("reviewMinutes", 3)),
+    reviewCostPerMinute: Math.max(0, value("reviewCostPerMinute", 1.5)),
+    judgeCost: Math.max(0, value("judgeCost", 0.02)),
+    judgeCoverage: Math.min(1, Math.max(0, value("judgeCoverage", 100) / 100)),
+    missCost: Math.max(0, value("missCost", 200)),
+    alpha: Math.min(0.5, Math.max(0.00001, value("alpha", 1) / 100)),
+    confidence: Math.min(0.9999, Math.max(0.5, value("confidence", 95) / 100)),
+    auditPeriodDays: Math.max(1, value("auditPeriodDays", 90)),
+    obsN: Math.max(1, Math.round(value("obsN", 300))),
+    obsK: Math.max(0, Math.round(value("obsK", 0))),
+    riskZero: Math.max(0, value("riskZero", 12) / 100),
+    riskSensitivity: Math.max(0.1, value("riskSensitivity", 25))
+  };
+}
+
+function kpi(label, value, hint) {
+  return '<div class="kpi"><div class="n">' + value + '</div><div class="l">' + label +
+         (hint ? ' <span style="opacity:.75">' + hint + '</span>' : '') + '</div></div>';
+}
+
+function percent(ratio, digits) {
+  const places = digits === undefined ? 2 : digits;
+  return (ratio * 100).toFixed(places) + "%";
+}
+
+function money(amount) {
+  return numberFormat.format(amount);
+}
+
+function renderLoad(input) {
+  const metrics = computeScenario(input);
+  const capacityWarning = metrics.manDaysPerDay >= 1
+    ? '约需 ' + metrics.manDaysPerDay.toFixed(1) + ' 人·日/日 的复核产能（按 8 小时/人·日）'
+    : '不足 1 人·日/日';
+
+  document.getElementById("kpis").innerHTML =
+    kpi("每日人工复核量", intFormat.format(metrics.reviewedPerDay) + " 条", "黄区 + 绿区审计") +
+    kpi("人工复核负载", metrics.manDaysPerDay.toFixed(2) + " 人·日/日", "= " + metrics.manHoursPerDay.toFixed(1) + " 人时/日") +
+    kpi("每日总成本", money(metrics.totalPerDay) + " 元", "") +
+    kpi("每季度（90 天）总成本", money(metrics.totalPerDay * 90) + " 元", "") +
+    kpi("绿区占比", percent(metrics.greenRate, 1), "自动放行") +
+    kpi("转交率 ρ", percent(input.amberRate + metrics.greenRate * input.greenAuditRate, 1), "黄区 + 绿区审计") +
+    kpi("审计样本量 n", intFormat.format(metrics.auditSample) + " 件", "零错误口径，α=" + percent(input.alpha, 3)) +
+    kpi("期望漏放错误", intFormat.format(metrics.missedErrorsPerDay) + " 条/日", "按 α 保守估计");
+
+  const items = [
+    ["判据成本（judge 等）", metrics.judgeCostPerDay],
+    ["人工复核成本", metrics.reviewCostPerDay],
+    ["审计成本（摊销）", metrics.auditCostPerDay],
+    ["期望错误成本（保守）", metrics.missCostPerDay]
+  ];
+  const total = metrics.totalPerDay || 1;
+  document.getElementById("costRows").innerHTML = items.map(function (item) {
+    return "<tr><td>" + item[0] + "</td><td>" + money(item[1]) + "</td><td>" +
+           money(item[1] * 90) + "</td><td>" + percent(item[1] / total, 1) + "</td></tr>";
+  }).join("") +
+    "<tr><th>合计</th><th>" + money(metrics.totalPerDay) + "</th><th>" + money(metrics.totalPerDay * 90) + "</th><th>100.0%</th></tr>";
+
+  const collected = metrics.collectedPerAuditPeriod;
+  const needed = metrics.auditSample;
+  let alertHtml;
+  if (!Number.isFinite(needed)) {
+    alertHtml = '<div class="good">当前 α 无法给出有限样本量（请检查输入）。</div>';
+  } else if (collected < needed) {
+    const suggested = Number.isFinite(metrics.requiredGreenAuditRate)
+      ? percent(Math.min(1, metrics.requiredGreenAuditRate), 2) : "—";
+    alertHtml = '<div class="warn"><strong>审计样本量不足。</strong>每个审计周期只能收集到 ' + intFormat.format(collected) +
+      ' 件绿区样本，而要给出 α=' + percent(input.alpha, 3) + ' 的上界需要 ' + intFormat.format(needed) +
+      ' 件。请把绿区审计抽样率 ε 提高到约 <strong>' + suggested +
+      '</strong>，或延长审计周期 / 提高流量口径。否则该承诺在统计上不可辩护。</div>';
+  } else {
+    alertHtml = '<div class="good"><strong>审计样本量充足。</strong>每周期可收集 ' + intFormat.format(collected) +
+      ' 件 ≥ 所需的 ' + intFormat.format(needed) + ' 件，α=' + percent(input.alpha, 3) + ' 的零错误上界可成立（前提：零错误）。</div>';
+  }
+  alertHtml += '<div class="hint">产能提示：' + capacityWarning +
+    '。这也是 §6.4 的容量红线——产能不足时应限流/降级（fail-closed），而不是放宽阈值。</div>';
+  document.getElementById("capacityAlert").innerHTML = alertHtml;
+}
+
+function renderAuditTable(input) {
+  const rows = [5, 2, 1, 0.5, 0.2, 0.1].map(function (alphaPercent) {
+    const rate = alphaPercent / 100;
+    return "<tr><td>" + alphaPercent + "%</td><td>" + intFormat.format(auditSampleSizeZeroError(rate, input.confidence)) +
+      "</td><td>" + intFormat.format(Math.ceil(3 / rate)) +
+      "</td><td>" + intFormat.format(detectionSampleSize(rate, input.confidence)) + "</td></tr>";
+  }).join("");
+  document.getElementById("auditRows").innerHTML = rows;
+  document.getElementById("auditGap").innerHTML =
+    '<div class="note">读法：要声称绿区残余错误率 ≤ α（且置信度 ' + percent(input.confidence, 0) +
+    '），需审计 n 件且<strong>全部无错</strong>；一旦发现错误，就要改用单侧精确上界（见第 4 节，Clopper–Pearson）并考虑收紧阈值。第 4 节在 k=0 时的上界与本表"精确二项"列可直接互相对照，口径一致。</div>';
+}
+
+function renderWilson(input) {
+  const observedErrors = Math.min(input.obsK, input.obsN);
+  const exactUpper = clopperPearsonUpperBound(observedErrors, input.obsN, input.confidence);
+  const wilsonUpper = wilsonUpperBound(observedErrors, input.obsN, input.confidence);
+  const pointEstimate = observedErrors / input.obsN;
+  const meets = exactUpper <= input.alpha;
+
+  document.getElementById("wilsonKpis").innerHTML =
+    kpi("点估计 k/n", percent(pointEstimate, 3), observedErrors + " / " + input.obsN) +
+    kpi("精确单侧上界", percent(exactUpper, 3), "Clopper–Pearson，判定用") +
+    kpi("Wilson 单侧上界", percent(wilsonUpper, 3), "参考") +
+    kpi("是否满足 α=" + percent(input.alpha, 3), meets ? "满足" : "不满足", "上界 ≤ α 才算达标");
+
+  document.getElementById("sentence").value =
+    "在最近一个审计周期内，我们对自动放行（绿区）结果随机抽取了 " + input.obsN +
+    " 件样本，其中 " + observedErrors + " 件被判定为错误（点估计 " + percent(pointEstimate, 3) + "）。据此，" +
+    percent(input.confidence, 0) + " 置信水平下绿区残余错误率的单侧上界为 " + percent(exactUpper, 3) +
+    "（Clopper–Pearson 精确法；Wilson 单侧上界 " + percent(wilsonUpper, 3) + " 供参考）。\n" +
+    (meets
+      ? "结论：残余错误率上界 " + percent(exactUpper, 3) + " 不高于承诺值 " + percent(input.alpha, 3) + "，本期承诺成立。"
+      : "结论：残余错误率上界 " + percent(exactUpper, 3) + " 高于承诺值 " + percent(input.alpha, 3) +
+        "，本期承诺不成立；建议按 §7.3 自动收紧阈值（绿区降级为人工复核）并扩大审计样本量。") +
+    "\n方法：Clopper–Pearson 单侧精确上界（二项抽样、随机抽样假设）；样本量口径见第 3 节。";
+}
+
+function drawCurve(input, optimal) {
+  const canvas = document.getElementById("curve");
+  const ctx = canvas.getContext("2d");
+  const width = canvas.width;
+  const height = canvas.height;
+  const padding = { left: 62, right: 20, top: 18, bottom: 34 };
+  ctx.clearRect(0, 0, width, height);
+
+  const reviewCostPerItem = input.reviewMinutes * input.reviewCostPerMinute;
+  const points = [];
+  let maxCost = 0;
+  let maxRisk = 0;
+  for (let rate = 0; rate <= 1.0001; rate += 0.005) {
+    const residualRisk = input.riskZero * Math.exp(-input.riskSensitivity * rate);
+    const cost = unitCostAt(rate, input.riskZero, input.riskSensitivity, input.missCost, reviewCostPerItem);
+    maxCost = Math.max(maxCost, cost);
+    maxRisk = Math.max(maxRisk, residualRisk);
+    points.push({ rate, cost, residualRisk });
+  }
+  if (maxCost <= 0) maxCost = 1;
+  if (maxRisk <= 0) maxRisk = 1;
+
+  const toX = rate => padding.left + rate * (width - padding.left - padding.right);
+  const toY = fraction => height - padding.bottom - fraction * (height - padding.top - padding.bottom);
+
+  ctx.strokeStyle = "#d7dee6";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(padding.left, padding.top);
+  ctx.lineTo(padding.left, height - padding.bottom);
+  ctx.lineTo(width - padding.right, height - padding.bottom);
+  ctx.stroke();
+
+  ctx.fillStyle = "#5b6b7c";
+  ctx.font = "12px Segoe UI, Microsoft YaHei, sans-serif";
+  [0, 0.25, 0.5, 0.75, 1].forEach(function (tick) {
+    const x = toX(tick);
+    ctx.fillText((tick * 100).toFixed(0) + "%", x - 12, height - padding.bottom + 18);
+  });
+  ctx.fillText("转交率 ρ", width - padding.right - 62, padding.top + 2);
+
+  ctx.strokeStyle = "#c0392b";
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  points.forEach(function (point, index) {
+    const x = toX(point.rate);
+    const y = toY(point.residualRisk / maxRisk);
+    if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = "#1f6feb";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  points.forEach(function (point, index) {
+    const x = toX(point.rate);
+    const y = toY(point.cost / maxCost);
+    if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  const optimumX = toX(optimal.rate);
+  const optimumY = toY(optimal.unitCost / maxCost);
+  ctx.fillStyle = "#1f6feb";
+  ctx.beginPath();
+  ctx.arc(optimumX, optimumY, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#12181f";
+  ctx.fillText("ρ* = " + percent(optimal.rate, 1), Math.min(optimumX + 8, width - 90), Math.max(optimumY - 10, 14));
+}
+
+function renderOptimal(input) {
+  const reviewCostPerItem = input.reviewMinutes * input.reviewCostPerMinute;
+  document.getElementById("reviewCostPerItem").value = reviewCostPerItem.toFixed(2);
+  const optimal = optimalDeferralRate(input.riskZero, input.riskSensitivity, input.missCost, reviewCostPerItem);
+
+  document.getElementById("optKpis").innerHTML =
+    kpi("最优转交率 ρ*", percent(optimal.rate, 1), "期望损失最小") +
+    kpi("该点残余错误率", percent(optimal.residualRisk, 3), "R(ρ*)") +
+    kpi("该点单位成本", money(optimal.unitCost) + " 元/条", "") +
+    kpi("不转人工的单位成本", money(optimal.costAtZero) + " 元/条", "ρ=0") +
+    kpi("几乎全转人工", money(optimal.costAtFull) + " 元/条", "ρ→100%") +
+    kpi("相对节省", percent(1 - optimal.unitCost / Math.max(optimal.costAtZero, 1e-9), 1), "对比 ρ=0");
+
+  drawCurve(input, optimal);
+}
+
+function renderAll() {
+  const input = readInputs();
+  renderLoad(input);
+  renderAuditTable(input);
+  renderWilson(input);
+  renderOptimal(input);
+}
+
+document.addEventListener("input", renderAll);
+renderAll();
+</script>
+</body>
+</html>

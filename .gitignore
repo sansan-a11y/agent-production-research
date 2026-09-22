@@ -5,9 +5,13 @@ research/otel/
 research/vendor/
 research/pages4/
 research/vendor2/
+research/vendor3/
 
 # OS / editor
 Thumbs.db
 desktop.ini
 .DS_Store
 *.zip
+
+# 抓取过程日志（含第三方原文，可由脚本重新生成，不入库）
+research/*.log

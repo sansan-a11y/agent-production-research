@@ -1,0 +1,56 @@
+﻿FAIL argilla-io/argilla : Received an unexpected EOF or 0 bytes from the transport stream.
+HumanSignal/label-studio                     stars=28327   push=2026-09-22 release=1.23.0         lic=Apache-2.0
+evidentlyai/evidently                        stars=7932    push=2026-09-11 release=v0.7.23        lic=Apache-2.0
+Giskard-AI/giskard-oss                       stars=5834    push=2026-09-22 release=giskard-checks/v1.0.4 lic=Apache-2.0
+vibrantlabsai/ragas                          stars=15822   push=2026-02-24 release=v0.4.3         lic=Apache-2.0
+confident-ai/deepeval                        stars=18390   push=2026-09-22 release=python-v4.2.0  lic=Apache-2.0
+Arize-ai/phoenix                             stars=11577   push=2026-09-22 release=@arizeai/phoenix-mcp@4.3.13 lic=NOASSERTION
+langfuse/langfuse                            stars=34935   push=2026-09-22 release=v4.41.0        lic=NOASSERTION
+comet-ml/opik                                stars=22195   push=2026-09-22 release=2.2.75         lic=Apache-2.0
+traceloop/openllmetry                        stars=7443    push=2026-09-17 release=0.62.3         lic=Apache-2.0
+openai/evals                                 stars=19491   push=2026-04-14 release=-              lic=NOASSERTION
+EleutherAI/lm-evaluation-harness             stars=14055   push=2026-09-14 release=v0.4.13        lic=MIT
+UKGovernmentBEIS/inspect_ai                  stars=2836    push=2026-09-22 release=-              lic=MIT
+FAIL stanfordnlp/helm : 远程服务器返回错误: (404) 未找到。
+sierra-research/tau2-bench                   stars=2092    push=2026-09-19 release=v1.0.1         lic=MIT
+metauto-ai/agent-as-a-judge                  stars=828     push=2026-03-28 release=-              lic=MIT
+cvs-health/uqlm                              stars=1201    push=2026-09-21 release=v0.6.6         lic=Apache-2.0
+Liyan06/MiniCheck                            stars=227     push=2025-08-27 release=-              lic=Apache-2.0
+potsawee/selfcheckgpt                        stars=631     push=2024-06-26 release=0.1.7          lic=MIT
+vectara/hallucination-leaderboard            stars=3314    push=2026-09-22 release=-              lic=Apache-2.0
+guardrails-ai/guardrails                     stars=7441    push=2026-09-18 release=v0.11.0        lic=Apache-2.0
+NVIDIA-NeMo/Guardrails                       stars=7178    push=2026-09-21 release=v0.24.1        lic=NOASSERTION
+openai/openai-agents-python                  stars=29636   push=2026-09-22 release=v0.22.3        lic=MIT
+langchain-ai/langgraph                       stars=42135   push=2026-09-21 release=1.2.12         lic=MIT
+promptfoo/promptfoo                          stars=25371   push=2026-09-22 release=0.123.1        lic=MIT
+bentoml/BentoML                              stars=8855    push=2026-09-07 release=v1.4.39        lic=Apache-2.0
+microsoft/promptflow                         stars=11242   push=2026-08-26 release=promptflow_1.17.1 lic=MIT
+Azure/azure-sdk-for-python                   stars=5604    push=2026-09-22 release=azure-mgmt-resource-policy_1.0.0 lic=MIT
+googleapis/python-aiplatform                 stars=907     push=2026-09-22 release=-              lic=Apache-2.0
+FAIL aws/amazon-bedrock-agentcore-samples : 远程服务器返回错误: (404) 未找到。
+FAIL aikitoria/awesome-llm-evaluation : 远程服务器返回错误: (404) 未找到。
+benchflow-ai/awesome-evals                   stars=903     push=2026-09-15 release=-              lic=NOASSERTION
+FAIL OpenBMB/AgentBench : 远程服务器返回错误: (404) 未找到。
+OpenBMB/ToolBench                            stars=5747    push=2025-05-21 release=-              lic=Apache-2.0
+SylphAI-Inc/AdalFlow                         stars=4217    push=2026-05-29 release=v1.1.3         lic=MIT
+FAIL UCL-DARK/awesome-llm-evaluation : 远程服务器返回错误: (404) 未找到。
+open-compass/opencompass                     stars=7467    push=2026-09-22 release=0.5.4          lic=Apache-2.0
+huggingface/lighteval                        stars=2547    push=2026-09-21 release=v0.13.0        lic=MIT
+stanford-crfm/helm                           stars=2921    push=2026-09-01 release=v0.5.16        lic=Apache-2.0
+wandb/weave                                  stars=1129    push=2026-09-22 release=v0.53.7        lic=Apache-2.0
+lastmile-ai/mcp-agent                        stars=8553    push=2026-01-25 release=v0.0.21        lic=Apache-2.0
+dbt-labs/dbt-utils                           stars=1805    push=2026-09-01 release=1.4.1          lic=Apache-2.0
+FAIL netflix/metaflow : The operation has timed out.
+mlflow/mlflow                                stars=28099   push=2026-09-22 release=v3.16.1        lic=Apache-2.0
+zenml-io/zenml                               stars=5588    push=2026-09-22 release=0.96.4         lic=Apache-2.0
+clearml/clearml                              stars=6883    push=2026-09-17 release=v2.1.12        lic=Apache-2.0
+activeloopai/deeplake                        stars=9242    push=2026-05-21 release=v4.5.2         lic=Apache-2.0
+FAIL inspect-ai/inspect : 远程服务器返回错误: (404) 未找到。
+FAIL explosion/prodigy : 远程服务器返回错误: (404) 未找到。
+doccano/doccano                              stars=10772   push=2026-04-14 release=v1.8.5         lic=MIT
+chinese-poetry/chinese-poetry                stars=53473   push=2026-06-17 release=-              lic=MIT
+FAIL snorkel-ai/snorkel : 远程服务器返回错误: (404) 未找到。
+cleanlab/cleanlab                            stars=11669   push=2026-01-13 release=v2.9.0         lic=Apache-2.0
+autogluon/autogluon                          stars=10733   push=2026-09-22 release=v1.6.3         lic=Apache-2.0
+openai/whisper                               stars=109469  push=2026-08-31 release=v20250625      lic=MIT
+kubernetes-sigs/agent-sandbox                stars=3987    push=2026-09-22 release=v1.0.3         lic=Apache-2.0

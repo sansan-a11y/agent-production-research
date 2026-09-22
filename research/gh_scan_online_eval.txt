@@ -1,0 +1,108 @@
+﻿=== llm annotation queue human review ===
+  total=0
+
+=== llm evaluation platform human feedback ===
+  total=11
+  DataScienceUIBK/RankArena                      *4       push=2025-11-26 :: RankArena: A Unified Platform for Evaluating Retrieval, Reranking and RAG with Human and LLM Feedback — CIKM ’25, Seoul, Nov 10–14
+  LofiSu/LoopLab                                 *2       push=2026-08-03 :: LoopLab is an open-source platform for understanding, evaluating, and improving AI agent behavior through trajectory analysis, rub
+  mohdibrahimaiml/Language-Model-Quality-Auditor *2       push=2025-08-11 :: A comprehensive human-in-the-loop evaluation platform for Large Language Models, built for AI alignment and safety research. This 
+  rajan0860/llm-evaluation-platform              *1       push=2026-02-12 :: LLM evaluation platform for benchmarking model responses using human feedback, Evals, and RLHF-style workflows.
+  Shekhar2298/LLM-Evaluation-Platform            *0       push=2026-09-13 :: A Python evaluation platform for LLM datasets, rubric scoring, aggregate metrics, and human feedback.
+  meelone128/customer-rag-evaluation-platform    *0       push=2026-09-16 :: Evidence-first customer-support RAG platform with retrieval evaluation, safety guardrails, human-review feedback loop, and FastAPI
+  Darshna1308/AgentOps                           *0       push=2026-09-21 :: Production AI Agent Monitoring & Evaluation Platform for tracking agent runs, tools, latency, tokens, cost, evaluation, and human 
+  yash01fatale/AI-Safety-Filter                  *0       push=2026-01-26 :: AI safety & moderation platform for evaluating LLM outputs with NLP, dashboards, and human-in-the-loop feedback.
+  PascalAmah/scorra                              *0       push=2026-09-12 :: An open-source AI evaluation platform for benchmarking LLMs, collecting human feedback, running regression tests, and monitoring A
+  acharjeesuvo/EvalMind                          *0       push=2025-08-01 :: A Streamlit-based annotation and review platform for evaluating LLM-generated reasoning on multimodal data using human-in-the-loop
+
+=== llm as judge alignment human labels ===
+  total=0
+
+=== agent trajectory evaluation benchmark ===
+  total=43
+  glo26/stepshield                               *76      push=2026-09-05 :: StepShield: When, Not Whether to Intervene on Rogue Agents — NeurIPS 2026 benchmark for temporal evaluation of AI agent guardrails
+  Yunhao-Feng/BackdoorAgent                      *45      push=2026-03-16 :: BackdoorAgent is a stage-aware framework and benchmark that instruments LLM-agent workflows (planning, memory, tools) to systemati
+  LiYu0524/ATbench                               *40      push=2026-09-15 :: ATBench: A Diverse and Realistic Agent Trajectory Benchmark for Safety Evaluation and Diagnosis
+  caiotheodoro/lossbench                         *5       push=2026-09-06 :: Expected-loss evaluation and control for agents that touch money. Severity-weighted, trajectory-level benchmark (reconciliation, p
+  elizabethfuentes12/how-to-evaluate-ai-agents-sample-for-aws *4       push=2026-09-15 :: Demos for AI agent evaluation: LLM-as-judge, trajectory analysis, hallucination detection, cost benchmarks
+  HanZhi306/SkillTV-Bench                        *4       push=2026-08-06 :: SkillTV-Bench: a benchmark for evaluating, evolving, and analyzing judge skills on agent trajectories.
+  VAIXLNS/VAIXLNS                                *4       push=2026-09-02 :: ╔════════════════════════════════════أرى أن هذا أصبح أقرب إلى Blueprint سيادي وليس مجرد مخطط نظام. ومع ذلك، إذا كان الهدف أن يكون 
+  weiwei966/awesome-agent-eval                   *3       push=2026-08-18 :: An unmeasured agent is an unfinished agent. Curated knowledge on evaluating AI agents — benchmarks & their pathologies, verifier d
+  zekiwasthere-collab/Agent-harness-bench        *2       push=2026-04-26 :: A benchmark harness suite for evaluating LLM agent trajectories. 
+  JayDS22/Transformer-based-Trajectory-Forecasting-system *2       push=2026-05-17 :: Transformer + Diffusion (DDPM) architecture for multi-agent pedestrian trajectory forecasting with temporal self-attention, social
+
+=== uncertainty quantification llm abstention ===
+  total=0
+
+=== conformal prediction llm ===
+  total=49
+  bhaweshiitk/ConformalLLM                       *69      push=2024-06-21 :: Extending Conformal Prediction to LLMs
+  SU-JIAYUAN/LofreeCP                            *11      push=2025-04-30 :: [EMNLP'24] Repo for Paper "API Is Enough: Conformal Prediction for LLMs Without Logit-Access"
+  BruceSheng1202/Analyzing_Uncertainty_of_LLM-as-a-Judge *7       push=2025-09-26 :: Official implementation of “Analyzing Uncertainty of LLM-as-a-Judge: Interval Evaluations with Conformal Prediction”
+  Muqi1029/UQ-ConformalPrediction                *4       push=2025-05-22 :: Exploring conformal prediction for uncertainty quantification in large language models (LLMs), covering everything from calibratio
+  rabbidave/Eliza-Thornberry-and-the-conformal-prediction-of-LLM-Behavior *3       push=2023-08-11 :: Python code for use in predicting a range of LLM outputs by dimension (e.g. sentiment, topic) across fixed domain values (e.g. pos
+  xubeining/TECP-Token-Entropy-Conformal-Prediction-for-LLMs *2       push=2026-07-28 :: <mathmatics>:Token-Entropy used in Conformal Prediction
+  anikasomaia/llm-eval-uncertainty               *2       push=2025-07-28 :: Quantifying uncertainty in LLM-as-judge evals with conformal prediction.
+  BruceSheng1202/Analyzing-Uncertainty-of-LLM-as-a-Judge *2       push=2025-09-26 :: Official implementation (old version) of “Analyzing Uncertainty of LLM-as-a-Judge: Interval Evaluations with Conformal Prediction”
+  YashToOp/Eval-AI                               *2       push=2026-08-05 :: Open-source AI text detector & evaluation framework. Detect ChatGPT/LLM-generated text, benchmark detectors, and certify your fals
+  SebiNechita/Simple-Test-LLMs-Politifact        *1       push=2026-06-15 :: DSAIT Master Thesis project involving Conformal Prediction in Complex Fact-checking with LLMs
+
+=== human in the loop labeling tool llm ===
+  total=4
+  xieshuaix/llm_label_app                        *0       push=2026-06-16 :: LLM conversation evaluation and labelling tool — human-in-the-loop annotation for comparing online vs forked LLM responses
+  Mayank8528/audio-transcription-qa              *0       push=2026-02-18 :: LLM-assisted human-in-the-loop audio transcription QA tool with speaker labeling and structured annotation storage.
+  mattmuldoon48/structured-eval-job-postings     *0       push=2026-09-22 :: LLM evaluation harness for structured job posting extraction. Includes a labeled JSONL dataset, Pydantic schema validation, OpenAI
+  TarunReddy8/triageiq                           *0       push=2026-07-23 :: Autonomous support-triage agent: reads a ticket, gathers context with tools, and drafts/routes/escalates - with guardrails, human-
+
+=== llm guardrails output verification runtime ===
+  total=1
+  VaibhavKarsh/llm-recovery-runtime              *1       push=2026-09-14 :: Failure-aware Python runtime for tool-using LLM workflows with bounded recovery, output verification, tracing, and reproducible ev
+
+=== agent task success verifier reward ===
+  total=0
+
+=== llm hallucination detection production monitoring ===
+  total=11
+  frckeepit/llm-production-toolkit               *94      push=2026-04-09 :: Production-ready toolkit for evaluating, monitoring, and ensuring safety of LLM deployments. Hallucination detection, bias evaluat
+  vaibhav07772/LLM-Monitoring-Platform           *2       push=2026-08-05 :: Production-grade LLM & Agent monitoring platform with real-time latency tracking, cost analysis, hallucination detection using LLM
+  mulugumanishkumar2006-del/rag-sentinel         *2       push=2026-06-24 :: Production-grade RAG observability platform featuring tracing, p95 latency monitoring, cost analytics, hallucination detection, au
+  omaraboelfetouh/Explainable-AI-Guardrails      *0       push=2026-03-15 :: A suite of tools for real-time bias detection, hallucination monitoring, and interpretability (SHAP/LIME) in production LLM pipeli
+  dilrabonu/sentinel-ai                          *0       push=2026-05-11 :: Reliability & Safety Infrastructure Layer for LLM Applications hallucination detection, uncertainty scoring, guardrails, drift mon
+  abhijha8287/llm-evaluation-platform            *0       push=2026-07-10 :: Production-grade platform to benchmark, evaluate, and monitor LLMs using DeepEval, Ragas, Promptfoo, and LiteLLM with automated ha
+  saanikapatil08/finance-llm-observability       *0       push=2026-05-24 :: Built a production-scale financial document intelligence platform using RAG pipelines, vector databases, and LLM observability fra
+  SeydinaBANE/agent-observability                *0       push=2026-06-18 :: Production-grade observability platform for LangGraph agents. Real-time ingestion, anomaly detection (hallucinations, infinite loo
+  sajalrastogii/Intelligent-Enterprise-Research-Agent *0       push=2026-02-08 :: Production-grade multi-agent LLM system featuring hybrid RAG (dense + BM25), SQL analytics agents, automated evaluation, hallucina
+  al-Jurjani/DetoxifyAI                          *0       push=2025-12-13 :: Production-grade MLOps pipeline for toxicity detection and LLM-powered text rephrasing. Combines toxic-bert classification with Mi
+
+=== data annotation quality inter annotator agreement ===
+  total=7
+  iljackb/annotation-quality-toolkit             *1       push=2026-08-28 :: Python & SQL toolkit for annotation quality analysis: Covers inter-annotator agreement metrics, data QA pipelines, and ASR evaluat
+  1exurious/ai-data-engine-text-safety-evaluation *1       push=2026-05-05 :: End-to-end AI data quality and model evaluation project for sensitive text classification, including annotation guidelines, adjudi
+  alexanderchimezie/ai-text-annotation-quality-evaluation *0       push=2026-09-15 :: A synthetic portfolio demonstration of text annotation, AI data quality assurance, and inter-annotator agreement.
+  bambiraines13-lgtm/annotation-quality-toolkit  *0       push=2026-06-15 :: Python toolkit for evaluating AI training data annotation quality — measures annotator accuracy, inter-annotator agreement (Cohen'
+  TheBigOne-IA/data-annotation-showcase          *0       push=2026-07-08 :: Portfolio demonstrating expertise in Data Annotation for AI/ML pipelines — including image annotation (bounding boxes, segmentatio
+  betinahonyango/kenyan_twitter_annotation       *0       push=2026-08-10 :: The project investigates how label quality and inter-annotator agreement affect the perfomance of sentiment/text classification mo
+  Joakimtech/annot-utils                         *0       push=2026-06-15 :: A Python CLI tool for converting between annotation formats (COCO ↔ YOLO), validating label quality, and calculating inter-annotat
+
+=== review queue moderation escalation ai ===
+  total=0
+
+=== llm observability online evaluation ===
+  total=5
+  rajeev-chaurasia/tracewell                     *0       push=2026-08-26 :: Online evaluation, regression detection, and statistical A/B experimentation for LLM systems in production
+  jafeeri/ai-prod-monitor                        *0       push=2026-09-08 :: Production observability and online evaluation for LLM apps: request tracing, token cost, sampled LLM-as-judge quality scoring, dr
+  api-evangelist/maxim                           *0       push=2026-09-22 :: Maxim AI — independent third-party profile of a public API surface, by API Evangelist. Maxim AI is an end-to-end platform for the 
+  api-evangelist/braintrust                      *0       push=2026-09-22 :: Braintrust — independent third-party profile of a public API surface, by API Evangelist. Braintrust is an enterprise-grade AI obse
+  api-evangelist/gentrace                        *0       push=2026-09-22 :: Gentrace — independent third-party profile of a public API surface, by API Evangelist. Gentrace was a developer platform for evalu
+
+=== agent evaluation harness trajectory scoring ===
+  total=9
+  xy9iao/trajectory-eval-harness                 *2       push=2026-08-16 :: Evaluation framework for LLM-agent reliability — scores intermediate reasoning steps, not just final outputs. Demonstrated on a re
+  ravenZ3/agentic-rag-eval-harness               *1       push=2026-08-04 :: Evaluation and regression-gating harness for a LangGraph RAG agent: RAGAS answer scoring, a trajectory scorer for planning/tool-us
+  zky001/agent-eval-platform                     *1       push=2026-08-11 :: An agent-capability evaluation platform for OpenAI-compatible LLM APIs: parameterized mock-environment tasks, deterministic state-
+  crispyberry/OpenBenchmark                      *1       push=2026-08-20 :: Turn real agent trajectories into runnable benchmarks, then rank models, harnesses, and your own agents on score, cost, and speed.
+  bharatkhanna-dev/agent-eval-harness            *0       push=2026-03-15 :: Lightweight evaluation harness for LLM-based agents — scoring, trajectory analysis, and regression gating with pytest.
+  mekala27-45/trajectory                         *0       push=2026-09-16 :: Evaluation harness for coding agents. Runs agents against containerized tasks with hidden tests, and scores the trajectory, not ju
+  RitikPatill/trajectory-lab                     *0       push=2026-06-01 :: Agent evaluation harness that scores full agent trajectories — not just outputs — with pluggable rubric, LLM-judge, and determinis
+  Ranjithv280502/Agent-eval-harness              *0       push=2026-08-03 :: Trajectory-scoring evaluation harness for tool-using agents. Scores tool choice, order, and arguments (not just final answers). In
+  4ktLuffy/agent-assay                           *0       push=2026-09-10 :: Evaluation-integrity layer for tool-calling agents: scores trajectory, arguments and final state, and refuses to report until the 
+
